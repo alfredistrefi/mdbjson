@@ -1,0 +1,31 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-genre {
+  margin: 10px;
+  background-color: gray;
+  padding: 5px;
+  color: white;
+  border-radius: 10px;
+  font-size: 20px;
+}
+
+
+
+@media (max-width: 768px) {
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .btn-genre {
+    background-color: gray;
+    color: white;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 10px; /* Adjust the font size as needed */
+  }
+}

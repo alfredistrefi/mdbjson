@@ -1,0 +1,163 @@
+.movies {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.movie {
+  width: 300px;
+  margin: 10px;
+  background-color: #f5f5f5;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  justify-content: space-between; /* Add space between elements */
+}
+.movie figure {
+  margin: 0;
+  text-align: center;
+}
+
+.movie img {
+  width: 200px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.movie__title {
+  margin: 10px 0;
+}
+
+.movie__Year {
+  margin-bottom: 10px;
+}
+
+
+.btn-6 {
+  display: flex;
+  align-items: center;
+}
+
+.btn-6 svg {
+  margin-right: 5px;
+}
+.movies {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.movie {
+  width: 300px;
+  margin: 10px;
+  background-color: #f5f5f5;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.movie figure {
+  margin: 0;
+  text-align: center;
+}
+
+.movie img {
+  width: 200px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.movie__title {
+  margin: 10px 0;
+}
+
+.movie__Year {
+  margin-bottom: 10px;
+}
+
+.custom-btn6 {
+  justify-content: center;
+  display: inline-block;
+  align-items: center;
+  background-color: #000000;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  margin: 0 auto; /* Center the button horizontally */
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+ 
+}
+
+.custom-btn6:hover {
+  background-color: #202020;
+}
+
+.btn-6 {
+  display: inline-block;
+}
+
+.btn-6 svg {
+  margin-right: 5px;
+}
+
+
+/*buttons show later & favs*/
+
+.buttons-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+.header-button{
+  background-color: #000000;
+  color: white;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+@media (max-width: 768px) {
+  .buttons-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .header-button {
+    background-color: #000000;
+    color: white;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 10px; /* Adjust the font size as needed */
+  }
+}
+
+/*fav and later list*/
+.favorites-list{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.watch-later-list{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.fav-later-btn{
+  color: rgb(0, 0, 0);
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  display: flex;
+  justify-content: center;
+}
+
+
+/*genre btn*/
+
