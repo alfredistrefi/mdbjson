@@ -48,14 +48,7 @@ const Caro = () => {
           />
         ))}
       </div>
-      <div className="carousel-controls">
-        <button className="carousel-control-left" onClick={() => handleSlide('left')}>
-          &lt;
-        </button>
-        <button className="carousel-control-right" onClick={() => handleSlide('right')}>
-          &gt;
-        </button>
-      </div>
+      
     </div>
   );
 };

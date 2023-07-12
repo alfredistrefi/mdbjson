@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import dbData from './db.json';
 import Caro from './caro';
-import Favo from './favo';
 import FavoriteMoviesPage from './FavoriteMoviesPage';
 import WatchLaterPage from './WatchLaterPage';
 import SideMenu from './SideMenu';
@@ -118,7 +117,7 @@ const App = () => {
                   type="button"
                   onClick={() => addToFavorites(movie)}
                 >
-                  Fav
+                  Favorites
                 </button>
                 <button
                   className="watch-later-button"

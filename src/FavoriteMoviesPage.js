@@ -1,33 +1,30 @@
 import React from 'react';
-import './wlf.css';
+import './App.css';
 
-const FavoriteMoviesPage = ({ favorites , removeFromFavorites}) => {
+const FavoriteMoviesPage = ({ favorites, removeFromFavorites }) => {
   return (
-    
-    <div className="favorite-movies-page">
-      <h2>Favorite Movies</h2>
+    <div className="movie-container">
+      
       {favorites.length === 0 ? (
         <p>No favorite movies added yet.</p>
       ) : (
-        
-          <ul>
-            {favorites.map((movie) => (
-              <li className="movie-card" key={movie.id}>
-                <img src={movie.posterUrl} alt={movie.title} className="movie-image" />
-                <div className="movie-details">
-                  <span className="movie-year">{movie.year}</span>
-                </div>
+        <ul>
+          {favorites.map((movie) => (
+            <li className="movie-card" key={movie.id}>
+              <img src={movie.posterUrl} alt={movie.title} className="movie-image" />
+              <div className="movie-details">
+                <span className="movie-year">{movie.year}</span>
                 <button
-                          type="button"
-                          className="custom-btn6 btn-6"
-                          onClick={() => removeFromFavorites(movie)}
-                        >
-                          Remove
-                        </button>
-              </li>
-              
-            ))}
-          </ul>
+                  type="button"
+                  className="custom-btn6 btn-6"
+                  onClick={() => removeFromFavorites(movie)}
+                >
+                  Remove
+                </button>
+              </div>
+            </li>
+          ))}
+        </ul>
       )}
     </div>
   );
