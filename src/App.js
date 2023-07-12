@@ -1,58 +1,67 @@
 import React, { useState, useEffect } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'font-awesome/css/font-awesome.min.css';
-import { FaHeart, FaClock } from 'react-icons/fa'; // Import react-icons
-import 'bootstrap/dist/css/bootstrap.min.css';
-import '@fortawesome/fontawesome-free/css/all.min.css';
 import './App.css';
-import Genres from './genres';
+import dbData from './db.json';
+import Caro from './caro';
+import Favo from './favo';
+import FavoriteMoviesPage from './FavoriteMoviesPage';
+import WatchLaterPage from './WatchLaterPage';
+import SideMenu from './SideMenu';
 
 const App = () => {
-  const [loading, setLoading] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [favorites, setFavorites] = useState([]);
-  const [showFavorites, setShowFavorites] = useState(false);
-  const [watchLaterList, setWatchLaterList] = useState([]);
-  const [showWatchLater, setShowWatchLater] = useState(false);
   const [movies, setMovies] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [favorites, setFavorites] = useState([]);
+  const [watchLaterList, setWatchLaterList] = useState([]);
+  const [showFavorites, setShowFavorites] = useState(false);
+  const [showWatchLater, setShowWatchLater] = useState(false);
+  const [selectedGenre, setSelectedGenre] = useState(null);
+  const [selectedYear, setSelectedYear] = useState(null);
 
-  const handleChange = (event) => {
-    setSearchQuery(event.target.value);
+  useEffect(() => {
+    setMovies(dbData.movies);
+  }, []);
+
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    setLoading(true);
-    // Make the API request
-    fetch(`http://www.omdbapi.com/?apikey=e5dde690&s=${searchQuery}`)
-      .then((response) => response.json())
-      .then((data) => {
-        // Update the movies state with the fetched data
-        if (data.Search) {
-          setMovies(data.Search);
-        } else {
-          setMovies([]);
-        }
-        setLoading(false);
-      })
-      .catch((error) => {
-        // Handle any errors
-        console.error('Error:', error);
-        setLoading(false);
-      });
-  };
+  const filteredMovies = movies.filter((movie) => {
+    const includesSearchTerm = movie.title.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesGenre = selectedGenre ? movie.genres.includes(selectedGenre) : true;
+    const matchesYear = selectedYear ? movie.year.toString() === selectedYear : true;
+    return includesSearchTerm && matchesGenre && matchesYear;
+  });
 
   const addToFavorites = (movie) => {
     setFavorites([...favorites, movie]);
   };
 
+  const addToWatchLaterList = (movie) => {
+    setWatchLaterList([...watchLaterList, movie]);
+  };
+
+  const toggleFavorites = () => {
+    setShowFavorites(!showFavorites);
+  };
+
+  const toggleWatchLater = () => {
+    setShowWatchLater(!showWatchLater);
+  };
+
+  const handleGenreSelect = (genre) => {
+    setSelectedGenre(genre);
+  };
+
+  const handleYearSelect = (year) => {
+    setSelectedYear(year);
+  };
+
+
+
+
   const removeFromFavorites = (movie) => {
     const updatedFavorites = favorites.filter((fav) => fav !== movie);
     setFavorites(updatedFavorites);
-  };
-
-  const addToWatchLaterList = (movie) => {
-    setWatchLaterList([...watchLaterList, movie]);
   };
 
   const removeFromWatchLaterList = (movie) => {
@@ -60,155 +69,69 @@ const App = () => {
     setWatchLaterList(updatedWatchLaterList);
   };
 
-  const handleScroll = () => {
-    const scrollTop =
-      document.documentElement.scrollTop || document.body.scrollTop;
-    const scrollHeight =
-      document.documentElement.scrollHeight || document.body.scrollHeight;
-    const clientHeight =
-      document.documentElement.clientHeight || document.body.clientHeight;
-    const reachedBottom = Math.ceil(scrollTop + clientHeight) >= scrollHeight;
-    if (reachedBottom && !loading) {
-      // Remove the following line or implement the fetchMovies function
-      // fetchMovies();
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
   return (
-    <div>
-      <div className="search-box-container">
-        <div className="col-lg-12 text-center"></div>
-        <div className="col-md-4 offset-md-4 mt-5 pt-3">
-          <div className="input-group mb-3">
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Search ....."
-              aria-label="Recipient's username"
-              value={searchQuery}
-              onChange={handleChange}
-            />
-            <div className="input-group-append">
-              <span className="input-group-text" onClick={handleSubmit}>
-                <i className="fa fa-search"></i>
-              </span>
-            </div>
-          </div>
-        </div>
-        <div className="buttons-nav">
-          <button
-            type="button"
-            className="header-button"
-            onClick={() => setShowFavorites(!showFavorites)}
-          >
-            {showFavorites ? 'Hide Favorites' : 'Show Favorites'}
-          </button>
-          <button
-            type="button"
-            className="header-button"
-            onClick={() => setShowWatchLater(!showWatchLater)}
-          >
-            {showWatchLater ? 'Hide Watch Later' : 'Show Watch Later'}
-          </button>
-        </div>
+    <div className='body'>
+      <SideMenu genres={dbData.genres} onSelectGenre={handleGenreSelect} onSelectYear={handleYearSelect} />
+      <div className='search-box'>
+        <input
+          type="text"
+          placeholder="Search movies"
+          value={searchTerm}
+          onChange={handleSearchChange}
+        />
+      </div>
 
-        <Genres />
+      <div className="top-button">
+        <button
+          type="button"
+          className="fav-button"
+          onClick={toggleFavorites}
+        >
+          Favorites List
+        </button>
+        <button
+          className="later-button"
+          onClick={toggleWatchLater}
+          type="button"
+        >
+          Watch Later List
+        </button>
+      </div>
 
-        {showFavorites && (
-          <div>
-            <h2 className="fav-later-btn">Favorites</h2>
-            <div className="favorites-list">
-              {favorites.length > 0 ? (
-                favorites.map((movie) => (
-                  <div className="movie" key={movie.imdbID}>
-                    <figure>
-                      <img src={movie.Poster} alt={movie.Title} />
-                      <figcaption>
-                        <h2 className="movie__title">{movie.Title}</h2>
-                        <p className="movie__Year">Year: {movie.Year}</p>
-                        <button
-                          type="button"
-                          className="custom-btn6 btn-6"
-                          onClick={() => removeFromFavorites(movie)}
-                        >
-                          Remove
-                        </button>
-                      </figcaption>
-                    </figure>
-                  </div>
-                ))
-              ) : (
-                <p>No favorite movies.</p>
-              )}
-            </div>
-          </div>
-        )}
+      <div>
+        <Caro />
+      </div>
 
-        {showWatchLater && (
-          <div>
-            <h2 className="fav-later-btn">Watching later</h2>
-            <div className="watch-later-list">
-              {watchLaterList.length > 0 ? (
-                watchLaterList.map((movie) => (
-                  <div className="movie" key={movie.imdbID}>
-                    <figure>
-                      <img src={movie.Poster} alt={movie.Title} />
-                      <figcaption>
-                        <h2 className="movie__title">{movie.Title}</h2>
-                        <p className="movie__Year">Year: {movie.Year}</p>
-                        <button
-                          type="button"
-                          className="custom-btn6 btn-6"
-                          onClick={() => removeFromWatchLaterList(movie)}
-                        >
-                          Remove
-                        </button>
-                      </figcaption>
-                    </figure>
-                  </div>
-                ))
-              ) : (
-                <p>No movies in watch later list.</p>
-              )}
-            </div>
-          </div>
-        )}
-
-        <div className="movies">
-          {movies.map((movie) => (
-            <div className="movie" key={movie.imdbID}>
-              <figure>
-                <img src={movie.Poster} alt={movie.Title} />
-                <figcaption>
-                  <h2 className="movie__title">{movie.Title}</h2>
-                  <p className="movie__Year">Year: {movie.Year}</p>
-                  <button
-                    type="button"
-                    className="custom-btn6 btn-6"
-                    onClick={() => addToFavorites(movie)}
-                  >
-                    <FaHeart />
-                  </button>
-                  <button
-                    type="button"
-                    className="custom-btn6 btn-6"
-                    onClick={() => addToWatchLaterList(movie)}
-                  >
-                    <FaClock />
-                  </button>
-                </figcaption>
-              </figure>
+      {showFavorites ? (
+        <FavoriteMoviesPage favorites={favorites} removeFromFavorites={removeFromFavorites} />
+      ) : showWatchLater ? (
+        <WatchLaterPage watchLaterList={watchLaterList} removeFromWatchLaterList={removeFromWatchLaterList} />
+      ) : (
+        <div className="movie-container">
+          {filteredMovies.map((movie) => (
+            <div className="movie-card" key={movie.id}>
+              <img src={movie.posterUrl} alt={movie.title} className="movie-image" />
+              <div className="movie-details">
+                <span className="movie-year">{movie.year}</span>
+                <button
+                  className="like-button"
+                  type="button"
+                  onClick={() => addToFavorites(movie)}
+                >
+                  Fav
+                </button>
+                <button
+                  className="watch-later-button"
+                  type="button"
+                  onClick={() => addToWatchLaterList(movie)}
+                >
+                  Watch Later
+                </button>
+              </div>
             </div>
           ))}
         </div>
-      </div>
+      )}
     </div>
   );
 };
