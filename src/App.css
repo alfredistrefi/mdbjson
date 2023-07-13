@@ -1,5 +1,5 @@
 body {
-  background-color: black;
+  background-color: #1F1D2B;
   margin: 0;
   padding: 0;
 }
@@ -9,17 +9,15 @@ body {
     margin-left: 210px;
     display: flex;
     flex-wrap: wrap;
-    background-color: black;
+    background-color: #1F1D2B;
   }
 }
 
-
 .movie-card {
-  width: 300px;
+  width: 340px;
   margin: 10px;
   padding: 10px;
-  background-color: #c3c3c3;
-  border-radius: 5px;
+  border-radius: 30px;
   box-shadow: white;
   display: flex;
   flex-direction: column;
@@ -28,11 +26,11 @@ body {
 
 .movie-card:hover {
   transform: scale(1.06);
-  background-color: rgb(255, 255, 255)
+  background-color: #151520;
 }
 
 .movie-image {
-  border-radius: 5px;
+  border-radius: 30px;
   width: 100%;
   height: auto;
 }
@@ -45,31 +43,35 @@ body {
 }
 
 .movie-year {
-  font-size: 14px;
+  font-size: 25px;
   font-weight: bold;
+  color: white;
 }
 
 .like-button,
 .watch-later-button {
-  padding: 8px 16px;
+  padding: 15px 25px;
   border: none;
   border-radius: 4px;
   font-size: 12px;
   cursor: pointer;
 }
 
-
 /* Media Queries for Responsive Layout */
 @media screen and (max-width: 768px) {
   .movie-card {
-    width: 100%;
-    width: 300px;
-    margin: 10px;
+    width: 100%; /* Set the width to 100% to occupy the full width of the mobile screen */
+    max-width: 340px; /* Limit the maximum width of the card to 340px */
+    margin: 20px;
     padding: 10px;
-    margin-left: 39px;
+    border-radius: 30px;
+    box-shadow: white;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s, background-color 0.3s;
   }
+  
 }
-
 
 .search-box {
   margin-bottom: 20px;
@@ -88,18 +90,17 @@ body {
 /* Media query for desktop view */
 @media (min-width: 768px) {
   .search-box input {
-    width: 400px; 
+    width: 400px;
   }
 }
 
 /* Media query for mobile view */
 @media (max-width: 767px) {
   .search-box input {
-    width: 260px; 
+    width: 260px;
   }
+  
 }
-
-
 
 .top-button {
   display: flex;
@@ -112,18 +113,24 @@ body {
   margin: 10px;
 }
 
-
-
 .top-button button {
   background-color: white;
   color: black;
   border: 1px solid grey;
-  padding: 10px 20px;
+  padding: 21px 25px; 
   margin: 5px;
   cursor: pointer;
   border-radius: 25px;
-   font-weight: bolder;
- font-size: larger;
+  font-weight: bolder;
+  font-size: smaller; /* Adjusted font size to make the text smaller */
+}
+
+/* Media query for mobile view */
+@media (max-width: 767px) {
+  .top-button button {
+    padding: 5px 10px; 
+    font-size: smaller; 
+  }
 }
 
 .top-button button {
@@ -135,16 +142,16 @@ body {
   color: rgb(0, 0, 0);
 }
 
-
-
 .like-button,
 .watch-later-button {
-  border: 2px solid grey;
-  background-color: black;
-  color: white;
+  border: 2px solid white; /* Changed the border color to white */
+  background-color: white; /* Changed the background color to white */
+  color: black; /* Changed the font color to black */
   border-radius: 25px;
+  font-weight: bold;
 }
-.fvel-movies{
+
+.fvel-movies {
   color: white;
   text-align: center;
   font-size: larger;

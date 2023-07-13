@@ -26,7 +26,7 @@ const Caro = () => {
 
  
 
-  // Filter movies with a runtime larger than 120
+  // Filter movies with a runtime larger than 130
   const filteredMovies = movies.filter((movie) => movie.runtime > 130);
 
   return (

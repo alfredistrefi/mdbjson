@@ -16,10 +16,14 @@
   flex-shrink: 0;
   width: 250px;
   height: 350px;
+  border-radius: 30px;
   scroll-snap-align: start;
   object-fit: cover;
   margin-right: 10px;
+
 }
+
+
 
 .carousel-controls {
   position: absolute;

@@ -3,10 +3,11 @@
     top: 0;
     left: 0;
     left: -280px;
-    background: #fff;
+    border-radius: 25px;
+    background-color: #1F1D2B;
     width: 280px;
     height: 100vh;
-    box-shadow: 0 0 10px #ddd;
+    box-shadow: 0 0 10px rgb(0, 0, 0);
     transition: all 300ms ease;
     -o-transition: all 300ms ease;
     -ms-transition: all 300ms ease;
@@ -27,7 +28,7 @@
   }
   
   .sideMenu ul li {
-    border-top: 1px solid rgb(255, 255, 255);
+    background-color: #1F1D2B;
     text-align: center;
   }
   
@@ -133,10 +134,7 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   }
 
-  .boldo:hover {
-    color: #000;
-    background-color: rgba(20, 20, 20, 0.1);
-  }
+  
   
   .compo {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -145,14 +143,14 @@
     justify-content: center;
     padding: 20px;
     text-decoration: none;
-    color: #000;
+    color: rgb(255, 255, 255);
     font-weight: bold;
     font-size: large;
   }
 
   
   .compo:hover {
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     background-color: rgb(197, 197, 197);
     border-radius: 25px;
     border-width: 1px;
