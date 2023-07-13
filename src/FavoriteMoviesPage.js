@@ -4,9 +4,8 @@ import './App.css';
 const FavoriteMoviesPage = ({ favorites, removeFromFavorites }) => {
   return (
     <div className="movie-container">
-      
-      {favorites.length === 0 ? (
-        <p>No favorite movies added yet.</p>
+    {favorites.length === 0 ? (
+        <p className="fvel-movies">No favorite movies added yet.</p>
       ) : (
         <ul>
           {favorites.map((movie) => (
@@ -31,3 +30,4 @@ const FavoriteMoviesPage = ({ favorites, removeFromFavorites }) => {
 };
 
 export default FavoriteMoviesPage;
+

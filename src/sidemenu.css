@@ -22,24 +22,27 @@
     -webkit-transition: all 300ms ease;
   }
   .sideMenu ul {
-    display: block;
     margin: 0;
     padding: 0;
   }
+  
   .sideMenu ul li {
-    display: block;
-    border-top: 1px solid #ddd;
+    border-top: 1px solid rgb(255, 255, 255);
+    text-align: center;
   }
+  
   .sideMenu ul li:first-child {
     border: 0;
   }
-  .sideMenu ul li {
+  
+  .sideMenu ul li a {
     display: block;
-    padding: 20px 20px;
+    padding: 20px;
     text-decoration: none;
-    color: #000;
-    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 300ms ease;
   }
+
   
   .menuIcon {
     display: inline-block;
@@ -127,16 +130,31 @@
     padding: 20px 20px;
     text-decoration: none;
     cursor: pointer;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   }
 
-  .compo{
-    display: block;
-    padding: 20px 20px;
+  .boldo:hover {
+    color: #000;
+    background-color: rgba(20, 20, 20, 0.1);
+  }
+  
+  .compo {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
     text-decoration: none;
     color: #000;
     font-weight: bold;
-    align-items: center;
-    text-align: center;
     font-size: large;
   }
+
   
+  .compo:hover {
+    color: rgb(0, 0, 0);
+    background-color: rgb(197, 197, 197);
+    border-radius: 25px;
+    border-width: 1px;
+    border-color: #000;
+  }

@@ -1,5 +1,5 @@
 import React from 'react';
-import './wlf.css';
+import './App.css';
 const WatchLaterPage = ({ watchLaterList, removeFromWatchLaterList }) => {
   return (
     <div className="watch-later-movies-page">

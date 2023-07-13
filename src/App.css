@@ -18,17 +18,23 @@ body {
   width: 300px;
   margin: 10px;
   padding: 10px;
-  background-color: #ffffff;
+  background-color: #c3c3c3;
   border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: white;
   display: flex;
   flex-direction: column;
+  transition: transform 0.3s, background-color 0.3s;
+}
+
+.movie-card:hover {
+  transform: scale(1.06);
+  background-color: rgb(255, 255, 255)
 }
 
 .movie-image {
+  border-radius: 5px;
   width: 100%;
   height: auto;
-  border-radius: 5px;
 }
 
 .movie-details {
@@ -52,6 +58,7 @@ body {
   cursor: pointer;
 }
 
+
 /* Media Queries for Responsive Layout */
 @media screen and (max-width: 768px) {
   .movie-card {
@@ -72,10 +79,24 @@ body {
 
 .search-box input {
   padding: 10px;
-  width: 260px; /* Adjust the width as per your preference */
+  width: 260px;
   border: 1px solid rgb(255, 255, 255);
   border-radius: 4px;
   font-size: 16px;
+}
+
+/* Media query for desktop view */
+@media (min-width: 768px) {
+  .search-box input {
+    width: 400px; 
+  }
+}
+
+/* Media query for mobile view */
+@media (max-width: 767px) {
+  .search-box input {
+    width: 260px; 
+  }
 }
 
 
@@ -101,12 +122,19 @@ body {
   margin: 5px;
   cursor: pointer;
   border-radius: 25px;
+   font-weight: bolder;
+ font-size: larger;
+}
+
+.top-button button {
+  transition: background-color 0.5s, color 0.5s;
 }
 
 .top-button button:hover {
-  background-color: grey;
-  color: white;
+  background-color: rgb(224, 224, 224);
+  color: rgb(0, 0, 0);
 }
+
 
 
 .like-button,
@@ -115,4 +143,22 @@ body {
   background-color: black;
   color: white;
   border-radius: 25px;
+}
+.fvel-movies{
+  color: white;
+  text-align: center;
+  font-size: larger;
+  font-weight: bolder;
+}
+
+.watch-later-movies-page {
+  /* Other styles for the component */
+
+  /* Make the h2 and p elements white */
+  color: white;
+}
+
+.watch-later-movies-page h2,
+.watch-later-movies-page p {
+  color: white;
 }

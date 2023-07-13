@@ -14,7 +14,7 @@ const App = () => {
   const [showFavorites, setShowFavorites] = useState(false);
   const [showWatchLater, setShowWatchLater] = useState(false);
   const [selectedGenre, setSelectedGenre] = useState(null);
-  const [selectedYear, setSelectedYear] = useState(null);
+  const [selectedDecade, setSelectedDecade] = useState(null);
 
   useEffect(() => {
     setMovies(dbData.movies);
@@ -27,8 +27,11 @@ const App = () => {
   const filteredMovies = movies.filter((movie) => {
     const includesSearchTerm = movie.title.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesGenre = selectedGenre ? movie.genres.includes(selectedGenre) : true;
-    const matchesYear = selectedYear ? movie.year.toString() === selectedYear : true;
-    return includesSearchTerm && matchesGenre && matchesYear;
+    const matchesDecade = selectedDecade ? (
+      parseInt(movie.year) >= selectedDecade &&
+      parseInt(movie.year) < selectedDecade + 10
+    ) : true;
+    return includesSearchTerm && matchesGenre && matchesDecade;
   });
 
   const addToFavorites = (movie) => {
@@ -51,12 +54,9 @@ const App = () => {
     setSelectedGenre(genre);
   };
 
-  const handleYearSelect = (year) => {
-    setSelectedYear(year);
+  const handleDecadeSelect = (decade) => {
+    setSelectedDecade(decade);
   };
-
-
-
 
   const removeFromFavorites = (movie) => {
     const updatedFavorites = favorites.filter((fav) => fav !== movie);
@@ -70,7 +70,7 @@ const App = () => {
 
   return (
     <div className='body'>
-      <SideMenu genres={dbData.genres} onSelectGenre={handleGenreSelect} onSelectYear={handleYearSelect} />
+      <SideMenu genres={dbData.genres} onSelectGenre={handleGenreSelect} onSelectDecade={handleDecadeSelect} />
       <div className='search-box'>
         <input
           type="text"
@@ -93,7 +93,7 @@ const App = () => {
           onClick={toggleWatchLater}
           type="button"
         >
-          Watch Later List
+          WatchLater List
         </button>
       </div>
 

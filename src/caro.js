@@ -24,14 +24,7 @@ const Caro = () => {
     fetchMovies();
   }, []);
 
-  const handleSlide = (direction) => {
-    const carousel = carouselRef.current;
-    const scrollAmount = direction === 'left' ? -carousel.offsetWidth : carousel.offsetWidth;
-    carousel.scrollBy({
-      left: scrollAmount,
-      behavior: 'smooth',
-    });
-  };
+ 
 
   // Filter movies with a runtime larger than 120
   const filteredMovies = movies.filter((movie) => movie.runtime > 130);
